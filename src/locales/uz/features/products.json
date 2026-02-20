@@ -1,0 +1,54 @@
+{
+  "products": {
+    "title": "Mahsulotlar",
+    "subtitle": "Mahsulotlar ro'yxati",
+    "fields": {
+      "name": {
+        "label": "Nomi",
+        "placeholder": "Mahsulot nomini kiriting",
+        "validation": {
+          "required": "Mahsulot nomi majburiy",
+          "minLength": "Minimal uzunlik: {{min}} ta belgi"
+        }
+      },
+      "price": {
+        "label": "Narxi",
+        "placeholder": "Narxni kiriting",
+        "validation": {
+          "required": "Narx majburiy",
+          "min": "Narx {{min}} dan kam bo'lmasligi kerak"
+        }
+      },
+      "category": {
+        "label": "Kategoriya",
+        "placeholder": "Kategoriyani tanlang",
+        "validation": {
+          "required": "Kategoriya majburiy"
+        }
+      },
+      "status": {
+        "label": "Holat",
+        "placeholder": "Holatni tanlang"
+      },
+      "image": {
+        "label": "Rasm",
+        "placeholder": "Rasm yuklang"
+      }
+    },
+    "actions": {
+      "create": "Mahsulot yaratish",
+      "edit": "Mahsulotni tahrirlash",
+      "delete": "Mahsulotni o'chirish",
+      "view": "Mahsulotni ko'rish"
+    },
+    "success": {
+      "created": "Mahsulot muvaffaqiyatli yaratildi",
+      "updated": "Mahsulot muvaffaqiyatli yangilandi",
+      "deleted": "Mahsulot muvaffaqiyatli o'chirildi"
+    },
+    "info": {
+      "noProducts": "Mahsulotlar topilmadi",
+      "deleteConfirm": "Bu mahsulotni o'chirishni xohlaysizmi?"
+    }
+  }
+}

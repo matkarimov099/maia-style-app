@@ -1,0 +1,64 @@
+{
+  "users": {
+    "title": "Foydalanuvchilar",
+    "subtitle": "Foydalanuvchilar ro'yxati",
+    "fields": {
+      "username": {
+        "label": "Foydalanuvchi nomi",
+        "placeholder": "Foydalanuvchi nomini kiriting",
+        "validation": {
+          "required": "Foydalanuvchi nomi majburiy",
+          "minLength": "Minimal uzunlik: {{min}} ta belgi"
+        }
+      },
+      "firstname": {
+        "label": "Ism",
+        "placeholder": "Ismni kiriting",
+        "validation": {
+          "required": "Ism majburiy"
+        }
+      },
+      "lastname": {
+        "label": "Familiya",
+        "placeholder": "Familiyani kiriting",
+        "validation": {
+          "required": "Familiya majburiy"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email manzilini kiriting",
+        "validation": {
+          "required": "Email majburiy",
+          "invalid": "Email formati noto'g'ri"
+        }
+      },
+      "role": {
+        "label": "Rol",
+        "placeholder": "Rolni tanlang",
+        "validation": {
+          "required": "Rol majburiy"
+        }
+      },
+      "status": {
+        "label": "Holat",
+        "placeholder": "Holatni tanlang"
+      }
+    },
+    "actions": {
+      "create": "Foydalanuvchi yaratish",
+      "edit": "Foydalanuvchini tahrirlash",
+      "delete": "Foydalanuvchini o'chirish",
+      "view": "Foydalanuvchini ko'rish"
+    },
+    "success": {
+      "created": "Foydalanuvchi muvaffaqiyatli yaratildi",
+      "updated": "Foydalanuvchi muvaffaqiyatli yangilandi",
+      "deleted": "Foydalanuvchi muvaffaqiyatli o'chirildi"
+    },
+    "info": {
+      "noUsers": "Foydalanuvchilar topilmadi",
+      "deleteConfirm": "Bu foydalanuvchini o'chirishni xohlaysizmi?"
+    }
+  }
+}

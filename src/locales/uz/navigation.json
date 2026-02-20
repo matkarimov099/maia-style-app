@@ -1,0 +1,28 @@
+{
+  "navigation": {
+    "title": "Navigatsiya",
+    "menu": "Menyu",
+    "toggleSidebar": "Yon panelni almashtirish",
+    "dashboard": {
+      "title": "Boshqaruv paneli",
+      "description": "Umumiy ko'rinish va tahlillar"
+    },
+    "products": {
+      "title": "Mahsulotlar",
+      "description": "Mahsulotlarni boshqarish"
+    },
+    "users": {
+      "title": "Foydalanuvchilar",
+      "description": "Foydalanuvchilarni boshqarish"
+    },
+    "settings": {
+      "title": "Sozlamalar",
+      "description": "Tizim sozlamalari"
+    },
+    "profile": {
+      "title": "Profil",
+      "description": "Profil sozlamalari",
+      "logout": "Chiqish"
+    }
+  }
+}

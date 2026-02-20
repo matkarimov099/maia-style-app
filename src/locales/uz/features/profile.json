@@ -1,0 +1,42 @@
+{
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Shaxsiy ma'lumotlar",
+    "fields": {
+      "firstname": {
+        "label": "Ism",
+        "placeholder": "Ismni kiriting"
+      },
+      "lastname": {
+        "label": "Familiya",
+        "placeholder": "Familiyani kiriting"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email manzilini kiriting"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "Telefon raqamini kiriting"
+      },
+      "avatar": {
+        "label": "Profil rasmi",
+        "placeholder": "Rasm yuklang"
+      }
+    },
+    "sections": {
+      "personal": "Shaxsiy ma'lumotlar",
+      "security": "Xavfsizlik",
+      "preferences": "Afzalliklar"
+    },
+    "actions": {
+      "updateProfile": "Profilni yangilash",
+      "changePassword": "Parolni o'zgartirish",
+      "uploadAvatar": "Rasm yuklash"
+    },
+    "success": {
+      "updated": "Profil muvaffaqiyatli yangilandi",
+      "passwordChanged": "Parol muvaffaqiyatli o'zgartirildi"
+    }
+  }
+}

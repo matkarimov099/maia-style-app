@@ -1,0 +1,42 @@
+{
+  "profile": {
+    "title": "Профиль",
+    "subtitle": "Личная информация",
+    "fields": {
+      "firstname": {
+        "label": "Имя",
+        "placeholder": "Введите имя"
+      },
+      "lastname": {
+        "label": "Фамилия",
+        "placeholder": "Введите фамилию"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Введите email адрес"
+      },
+      "phone": {
+        "label": "Телефон",
+        "placeholder": "Введите номер телефона"
+      },
+      "avatar": {
+        "label": "Фото профиля",
+        "placeholder": "Загрузите фото"
+      }
+    },
+    "sections": {
+      "personal": "Личная информация",
+      "security": "Безопасность",
+      "preferences": "Предпочтения"
+    },
+    "actions": {
+      "updateProfile": "Обновить профиль",
+      "changePassword": "Изменить пароль",
+      "uploadAvatar": "Загрузить фото"
+    },
+    "success": {
+      "updated": "Профиль успешно обновлён",
+      "passwordChanged": "Пароль успешно изменён"
+    }
+  }
+}

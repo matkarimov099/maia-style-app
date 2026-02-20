@@ -1,0 +1,28 @@
+{
+  "navigation": {
+    "title": "Навигация",
+    "menu": "Меню",
+    "toggleSidebar": "Переключить боковую панель",
+    "dashboard": {
+      "title": "Панель управления",
+      "description": "Обзор и аналитика"
+    },
+    "products": {
+      "title": "Товары",
+      "description": "Управление товарами"
+    },
+    "users": {
+      "title": "Пользователи",
+      "description": "Управление пользователями"
+    },
+    "settings": {
+      "title": "Настройки",
+      "description": "Системные настройки"
+    },
+    "profile": {
+      "title": "Профиль",
+      "description": "Настройки профиля",
+      "logout": "Выйти"
+    }
+  }
+}

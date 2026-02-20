@@ -1,0 +1,17 @@
+{
+  "dashboard": {
+    "title": "Boshqaruv paneli",
+    "subtitle": "Umumiy ko'rinish",
+    "stats": {
+      "totalUsers": "Jami foydalanuvchilar",
+      "totalProducts": "Jami mahsulotlar",
+      "totalRevenue": "Jami daromad",
+      "newOrders": "Yangi buyurtmalar"
+    },
+    "charts": {
+      "revenue": "Daromad grafigi",
+      "users": "Foydalanuvchilar statistikasi",
+      "products": "Mahsulotlar statistikasi"
+    }
+  }
+}

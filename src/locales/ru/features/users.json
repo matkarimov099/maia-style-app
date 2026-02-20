@@ -1,0 +1,64 @@
+{
+  "users": {
+    "title": "Пользователи",
+    "subtitle": "Список пользователей",
+    "fields": {
+      "username": {
+        "label": "Имя пользователя",
+        "placeholder": "Введите имя пользователя",
+        "validation": {
+          "required": "Имя пользователя обязательно",
+          "minLength": "Минимальная длина: {{min}} символов"
+        }
+      },
+      "firstname": {
+        "label": "Имя",
+        "placeholder": "Введите имя",
+        "validation": {
+          "required": "Имя обязательно"
+        }
+      },
+      "lastname": {
+        "label": "Фамилия",
+        "placeholder": "Введите фамилию",
+        "validation": {
+          "required": "Фамилия обязательна"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Введите email адрес",
+        "validation": {
+          "required": "Email обязателен",
+          "invalid": "Неверный формат email"
+        }
+      },
+      "role": {
+        "label": "Роль",
+        "placeholder": "Выберите роль",
+        "validation": {
+          "required": "Роль обязательна"
+        }
+      },
+      "status": {
+        "label": "Статус",
+        "placeholder": "Выберите статус"
+      }
+    },
+    "actions": {
+      "create": "Создать пользователя",
+      "edit": "Редактировать пользователя",
+      "delete": "Удалить пользователя",
+      "view": "Просмотреть пользователя"
+    },
+    "success": {
+      "created": "Пользователь успешно создан",
+      "updated": "Пользователь успешно обновлён",
+      "deleted": "Пользователь успешно удалён"
+    },
+    "info": {
+      "noUsers": "Пользователи не найдены",
+      "deleteConfirm": "Вы хотите удалить этого пользователя?"
+    }
+  }
+}

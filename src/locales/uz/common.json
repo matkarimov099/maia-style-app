@@ -1,0 +1,122 @@
+{
+  "app": {
+    "name": "Admin Dashboard",
+    "description": "Boshqaruv paneli"
+  },
+  "common": {
+    "actions": {
+      "save": "Saqlash",
+      "saving": "Saqlanmoqda...",
+      "cancel": "Bekor qilish",
+      "delete": "O'chirish",
+      "deleting": "O'chirilmoqda...",
+      "edit": "Tahrirlash",
+      "create": "Yaratish",
+      "creating": "Yaratilmoqda...",
+      "update": "Yangilash",
+      "updating": "Yangilanmoqda...",
+      "view": "Ko'rish",
+      "add": "Qo'shish",
+      "remove": "Olib tashlash",
+      "back": "Orqaga",
+      "next": "Keyingi",
+      "previous": "Oldingi",
+      "submit": "Yuborish",
+      "confirm": "Tasdiqlash",
+      "refresh": "Yangilash",
+      "reset": "Tozalash",
+      "clear": "Tozalash",
+      "apply": "Qo'llash",
+      "search": "Qidirish",
+      "filter": "Filtr",
+      "sort": "Saralash",
+      "export": "Eksport",
+      "import": "Import",
+      "download": "Yuklab olish",
+      "upload": "Yuklash",
+      "close": "Yopish",
+      "open": "Ochish",
+      "copy": "Nusxalash",
+      "copied": "Nusxalandi",
+      "settings": "Sozlamalar",
+      "logout": "Chiqish"
+    },
+    "states": {
+      "loading": "Yuklanmoqda...",
+      "success": "Muvaffaqiyatli",
+      "error": "Xatolik",
+      "warning": "Ogohlantirish",
+      "info": "Ma'lumot",
+      "active": "Faol",
+      "inactive": "Nofaol",
+      "noData": "Ma'lumot topilmadi"
+    },
+    "ui": {
+      "yes": "Ha",
+      "no": "Yo'q",
+      "ok": "OK",
+      "total": "Jami",
+      "from": "Dan",
+      "to": "Gacha",
+      "of": "dan",
+      "page": "Sahifa",
+      "all": "Hammasi",
+      "none": "Hech biri",
+      "selected": "Tanlangan",
+      "noData": "Ma'lumot mavjud emas",
+      "noResults": "Natija topilmadi",
+      "searchPlaceholder": "Qidirish..."
+    },
+    "table": {
+      "actions": "Amallar",
+      "selectAll": "Hammasini tanlash",
+      "noData": "Ma'lumot mavjud emas",
+      "noResults": "Natija topilmadi",
+      "search": "Qidirish...",
+      "filter": "Filtr",
+      "columns": "Ustunlar",
+      "export": "Eksport",
+      "clearFilters": "Filtrlarni tozalash"
+    },
+    "pagination": {
+      "previous": "Oldingi",
+      "next": "Keyingi",
+      "first": "Birinchi",
+      "last": "Oxirgi",
+      "page": "Sahifa",
+      "of": "dan",
+      "showing": "Ko'rsatilmoqda",
+      "items": "ta",
+      "per_page": "har sahifada"
+    }
+  },
+  "theme": {
+    "light": "Yorug'",
+    "dark": "Qorong'i",
+    "system": "Tizim",
+    "toggle": "Mavzuni almashtirish"
+  },
+  "enums": {
+    "role": {
+      "ADMIN": "Administrator",
+      "MANAGER": "Menejer",
+      "USER": "Foydalanuvchi"
+    },
+    "userStatus": {
+      "ACTIVE": "Faol",
+      "INACTIVE": "Nofaol",
+      "DELETED": "O'chirilgan"
+    },
+    "productStatus": {
+      "ACTIVE": "Faol",
+      "DRAFT": "Qoralama",
+      "ARCHIVED": "Arxivlangan"
+    },
+    "productCategory": {
+      "ELECTRONICS": "Elektronika",
+      "CLOTHING": "Kiyim-kechak",
+      "FOOD": "Oziq-ovqat",
+      "OTHER": "Boshqa"
+    }
+  }
+}
