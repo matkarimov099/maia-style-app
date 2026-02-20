@@ -3,6 +3,13 @@
     "title": "Navigatsiya",
     "menu": "Menyu",
     "toggleSidebar": "Yon panelni almashtirish",
+    "sidebar": {
+      "main": "Asosiy",
+      "other": "Boshqa",
+      "needHelp": "Yordam kerakmi?",
+      "contactSupport": "Qo'llab-quvvatlash jamoasiga murojaat qiling",
+      "getSupport": "Yordam olish"
+    },
     "dashboard": {
       "title": "Boshqaruv paneli",
       "description": "Umumiy ko'rinish va tahlillar"
@@ -18,6 +25,9 @@
     "settings": {
       "title": "Sozlamalar",
       "description": "Tizim sozlamalari"
+    },
+    "helpSupport": {
+      "title": "Yordam"
     },
     "profile": {
       "title": "Profil",

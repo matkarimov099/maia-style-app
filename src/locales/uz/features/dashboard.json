@@ -3,15 +3,18 @@
     "title": "Boshqaruv paneli",
     "subtitle": "Umumiy ko'rinish",
     "stats": {
-      "totalUsers": "Jami foydalanuvchilar",
-      "totalProducts": "Jami mahsulotlar",
-      "totalRevenue": "Jami daromad",
-      "newOrders": "Yangi buyurtmalar"
+      "revenue": "Daromad",
+      "avgOrderValue": "O'rtacha buyurtma",
+      "totalOrders": "Jami buyurtmalar",
+      "totalSalesCost": "Jami sotuv va xarajat",
+      "last28Days": "Oxirgi 28 kun",
+      "thanLastWeek": "o'tgan haftaga nisbatan",
+      "vsPrev28Days": "oldingi 28 kunga nisbatan"
     },
     "charts": {
-      "revenue": "Daromad grafigi",
-      "users": "Foydalanuvchilar statistikasi",
-      "products": "Mahsulotlar statistikasi"
+      "transactionsActivity": "Tranzaksiyalar faolligi",
+      "week": "Hafta",
+      "month": "Oy"
     }
   }
 }

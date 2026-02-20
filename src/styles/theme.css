@@ -1,12 +1,9 @@
 /* ============================
-   THEME TOKENS (Light)
+   THEME TOKENS
    ============================ */
 :root {
-  /* -- scale & geometry */
+  /* Scale & geometry */
   --scale-factor: 1;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
   --radius-pill: 9999px;
 
   /* Motion */
@@ -15,138 +12,25 @@
   --motion-long: 340ms;
   --motion-ease: cubic-bezier(0.2, 0.9, 0.25, 1);
 
-  /* Font stack */
-  --font-sans: -apple-system, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    system-ui, sans-serif;
+  /* Custom semantic tokens */
+  --backgroundBody: var(--muted);
+  --secondaryBackground: var(--muted);
+  --card-bg: var(--card);
+  --content-bg: var(--card);
+  --label: var(--foreground);
+  --secondaryLabel: var(--muted-foreground);
+  --tertiaryLabel: color-mix(in srgb, var(--foreground) 60%, transparent);
 
-  /* Semantic tokens (Light mode) */
-  --background: #ffffff;
-  --backgroundBody: #f5f5f5;
-  --secondaryBackground: #f5f5f7;
-  --card-bg: rgba(255, 255, 255, 1);
-  --popover-bg: rgba(255, 255, 255, 1);
-  --content-bg: rgba(255, 255, 255, 1);
-  --label: #1d1d1f;
-  --secondaryLabel: #515154;
-  --tertiaryLabel: rgba(29, 29, 31, 0.6);
-
-  /* System colors */
-  --system-blue: #2563eb;
-  --system-blue-500: #3b82f6;
-  --system-green: #15803d;
-  --system-red: #ff3b30;
-  --system-yellow: #ffd60a;
-  --system-cyan: #64d2ff;
-
-  /* border / ring */
-  --border: rgba(60, 60, 67, 0.12);
-  --control-border: rgba(60, 60, 67, 0.1);
-  --ring: var(--color-primary);
-
-  /* Input / control BG */
-  --control-bg: rgba(255, 255, 255, 1);
-  --control-ghost-bg: rgba(245, 245, 247, 1);
-
-  /* shadow tokens */
-  --shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.04);
-  --shadow-md: 0 6px 18px rgba(2, 6, 23, 0.08);
-  --shadow-lg: 0 12px 40px rgba(2, 6, 23, 0.12);
-
-  /* charts */
-  --chart-1: var(--system-blue);
-  --chart-2: var(--system-green);
-  --chart-3: var(--system-yellow);
-  --chart-4: var(--system-red);
-  --chart-5: var(--system-cyan);
-
-  /* sidebar specific (light) */
-  --sidebar-bg: rgba(255, 255, 255, 1);
-  --sidebar-foreground: var(--label);
-  --sidebar-primary: var(--color-primary);
-  --sidebar-primary-foreground: #fff;
-  --sidebar-accent: rgba(245, 245, 247, 1);
-  --sidebar-accent-foreground: var(--label);
-  --sidebar-border: rgba(60, 60, 67, 0.1);
-  --sidebar-ring: var(--color-primary);
-
-  /* shadcn compatibility */
-  --foreground: var(--label);
-  --card: var(--card-bg);
-  --card-foreground: var(--label);
-  --popover: var(--popover-bg);
-  --popover-foreground: var(--label);
-  --primary: var(--system-blue);
-  --primary-foreground: #fff;
-  --secondary: var(--system-green);
-  --secondary-foreground: #fff;
-  --muted: var(--secondaryBackground);
-  --muted-foreground: var(--secondaryLabel);
-  --accent: var(--system-blue);
-  --accent-foreground: #fff;
-  --destructive: var(--system-red);
-  --input: var(--control-bg);
-  --sidebar: var(--sidebar-bg);
+  /* Shadow tokens */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* ============================
-   Dark mode tokens (.dark)
-   ============================ */
 .dark {
-  --background: #0b0b0d;
-  --backgroundBody: #0b0b0d;
-  --secondaryBackground: #121213;
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --popover-bg: rgba(255, 255, 255, 0.06);
-  --content-bg: rgba(255, 255, 255, 0.06);
-
-  --label: rgba(255, 255, 255, 0.92);
-  --secondaryLabel: rgba(255, 255, 255, 0.66);
-  --tertiaryLabel: rgba(255, 255, 255, 0.4);
-
-  --system-blue: #3b82f6;
-  --system-blue-500: #60a5fa;
-  --system-green: #16a34a;
-  --system-red: #ff453a;
-  --system-yellow: #ffd60a;
-  --system-cyan: #64d2ff;
-
-  --border: rgba(255, 255, 255, 0.06);
-  --control-border: rgba(255, 255, 255, 0.06);
-  --ring: var(--color-primary);
-
-  --control-bg: rgba(255, 255, 255, 0.02);
-  --control-ghost-bg: rgba(255, 255, 255, 0.03);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
-
-  --chart-1: var(--system-blue);
-  --chart-2: var(--system-green);
-  --chart-3: var(--system-yellow);
-  --chart-4: var(--system-red);
-  --chart-5: var(--system-cyan);
-
-  --sidebar-bg: var(--content-bg);
-  --sidebar-foreground: var(--label);
-  --sidebar-primary: var(--color-primary);
-  --sidebar-primary-foreground: #fff;
-  --sidebar-accent: var(--control-ghost-bg);
-  --sidebar-accent-foreground: var(--label);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--color-primary);
-
-  --foreground: var(--label);
-  --card: var(--card-bg);
-  --card-foreground: var(--label);
-  --popover: var(--popover-bg);
-  --popover-foreground: var(--label);
-  --muted: var(--secondaryBackground);
-  --muted-foreground: var(--secondaryLabel);
-  --accent: var(--control-ghost-bg);
-  --accent-foreground: var(--label);
-  --input: var(--control-bg);
-  --sidebar: var(--sidebar-bg);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================
@@ -167,18 +51,12 @@
   body,
   #root {
     height: 100%;
-    background: var(--backgroundBody);
-    color: var(--label);
-    font-family: var(--font-sans), sans-serif;
+    background: var(--background);
+    color: var(--foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background var(--motion-medium) var(--motion-ease),
       color var(--motion-medium) var(--motion-ease);
-  }
-
-  * {
-    border-color: var(--border);
-    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
 }
 
@@ -193,7 +71,7 @@
   }
 
   .glass {
-    background: var(--card-bg);
+    background: var(--card);
     backdrop-filter: blur(12px) saturate(160%);
     border: 1px solid var(--border);
   }
@@ -208,22 +86,6 @@
   .button-press:active {
     transform: scale(0.98) translateY(1px);
     transition-duration: 75ms;
-  }
-
-  .text-primary {
-    color: var(--foreground);
-  }
-
-  .text-secondary {
-    color: var(--muted-foreground);
-  }
-
-  .bg-card {
-    background-color: var(--card);
-  }
-
-  .bg-content {
-    background-color: var(--content-bg);
   }
 }
 

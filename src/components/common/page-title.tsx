@@ -1,13 +1,21 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { usePageTitle } from '@/hooks/use-page-title';
 
-export function PageTitle() {
-  const { title } = usePageTitle();
-
-  if (!title) return null;
-
-  return (
-    <div className="flex items-center gap-2">
-      <h1 className="font-semibold text-lg">{title}</h1>
-    </div>
-  );
+interface PageTitleProps {
+  title: string;
 }
+
+export const PageTitle = ({ title }: PageTitleProps) => {
+  const { t } = useTranslation();
+  const { setTitle } = usePageTitle();
+
+  const translatedTitle = t(title);
+
+  useEffect(() => {
+    setTitle(translatedTitle);
+    document.title = translatedTitle;
+  }, [translatedTitle, setTitle]);
+
+  return null;
+};

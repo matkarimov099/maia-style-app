@@ -1,9 +1,16 @@
+import { IconCheck, IconChevronDown } from '@tabler/icons-react';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const LANGUAGES = [
-  { code: 'uz', label: "O'zbekcha" },
-  { code: 'ru', label: 'Русский' },
+  { code: 'uz', label: "O'zbekcha", short: 'UZ' },
+  { code: 'ru', label: 'Русский', short: 'RU' },
 ] as const;
 
 export function LanguageSwitcher() {
@@ -17,22 +24,31 @@ export function LanguageSwitcher() {
     [i18n]
   );
 
+  const currentLang = LANGUAGES.find(l => l.code === i18n.language) ?? LANGUAGES[0];
+
   return (
-    <div className="flex items-center gap-1">
-      {LANGUAGES.map(lang => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <button
-          key={lang.code}
           type="button"
-          onClick={() => changeLanguage(lang.code)}
-          className={`rounded-md px-2 py-1 font-medium text-xs transition-colors ${
-            i18n.language === lang.code
-              ? 'bg-primary text-white'
-              : 'bg-muted text-muted-foreground hover:bg-accent'
-          }`}
+          className="inline-flex h-10 items-center gap-1.5 rounded-xl bg-card px-3 font-medium text-foreground text-sm ring-1 ring-border/50 transition-colors hover:bg-muted"
         >
-          {lang.label}
+          <span>{currentLang.short}</span>
+          <IconChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
-      ))}
-    </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-44">
+        {LANGUAGES.map(lang => (
+          <DropdownMenuItem
+            key={lang.code}
+            onClick={() => changeLanguage(lang.code)}
+            className="justify-between"
+          >
+            <span>{lang.label}</span>
+            {currentLang.code === lang.code && <IconCheck className="h-4 w-4 text-primary" />}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

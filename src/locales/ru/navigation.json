@@ -3,6 +3,13 @@
     "title": "Навигация",
     "menu": "Меню",
     "toggleSidebar": "Переключить боковую панель",
+    "sidebar": {
+      "main": "Основное",
+      "other": "Другое",
+      "needHelp": "Нужна помощь?",
+      "contactSupport": "Свяжитесь с командой поддержки",
+      "getSupport": "Получить помощь"
+    },
     "dashboard": {
       "title": "Панель управления",
       "description": "Обзор и аналитика"
@@ -18,6 +25,9 @@
     "settings": {
       "title": "Настройки",
       "description": "Системные настройки"
+    },
+    "helpSupport": {
+      "title": "Помощь"
     },
     "profile": {
       "title": "Профиль",

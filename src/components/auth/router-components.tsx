@@ -1,70 +1,71 @@
-import { lazy, type ReactNode, Suspense } from 'react';
-import { Navigate, Outlet } from 'react-router';
-import { isAuthenticated } from '@/lib/auth';
-import { AuthContextProvider } from '@/providers/auth-context-provider';
+import type { ReactNode } from 'react';
+import { Navigate } from 'react-router';
+import { AuthGuard } from '@/components/auth/auth-guard';
+import { useAuthContext } from '@/hooks/use-auth-context';
+import { DefaultLayout } from '@/layouts';
+import AuthLayout from '@/layouts/AuthLayout';
+import AuthContextProvider from '@/providers/auth-context-provider';
+import type { Role } from '@/types/enums';
 
-const AuthLayout = lazy(() => import('@/layouts/AuthLayout'));
-const DefaultLayout = lazy(() => import('@/layouts/DefaultLayout'));
-
-function LazyComponent({ children }: { children: ReactNode }) {
-  return (
-    <Suspense fallback={<div className="flex h-screen items-center justify-center">...</div>}>
-      {children}
-    </Suspense>
-  );
-}
-
-export function RootRedirect() {
-  if (isAuthenticated()) {
-    return <Navigate to="/dashboard" replace />;
-  }
-  return <Navigate to="/auth/login" replace />;
-}
-
-export function AuthLayoutWrapper() {
-  if (isAuthenticated()) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return (
-    <LazyComponent>
-      <AuthLayout>
-        <Outlet />
-      </AuthLayout>
-    </LazyComponent>
-  );
-}
-
+/**
+ * MainLayoutWrapper component with auth context and default layout
+ */
 export function MainLayoutWrapper() {
-  if (!isAuthenticated()) {
-    return <Navigate to="/auth/login" replace />;
-  }
-
   return (
     <AuthContextProvider>
-      <LazyComponent>
-        <DefaultLayout>
-          <Outlet />
-        </DefaultLayout>
-      </LazyComponent>
+      <AuthGuard>
+        <DefaultLayout />
+      </AuthGuard>
     </AuthContextProvider>
   );
 }
 
-export function ProtectedRoute({
-  children,
-  allowedRoles,
-}: {
+/**
+ * AuthLayoutWrapper component with auth context and auth layouts
+ */
+export function AuthLayoutWrapper() {
+  return (
+    <AuthContextProvider>
+      <AuthLayout />
+    </AuthContextProvider>
+  );
+}
+
+/**
+ * RootRedirect component to redirect based on user role
+ */
+export function RootRedirect() {
+  // TODO: Backend tayyor bo'lganda quyidagi commentlarni olib tashlang
+  // const { isLoading, authedUser } = useAuthContext();
+  //
+  // if (isLoading || !authedUser) {
+  //   return null;
+  // }
+
+  return <Navigate to="/dashboard" replace />;
+}
+
+/**
+ * ProtectedRoute component with role-based access control
+ */
+interface ProtectedRouteProps {
   children: ReactNode;
-  allowedRoles?: string[];
-}) {
-  if (!isAuthenticated()) {
-    return <Navigate to="/auth/login" replace />;
+  roles?: Role[];
+}
+
+export function ProtectedRoute({ children, roles }: ProtectedRouteProps) {
+  const { hasRole, isLoading, authedUser } = useAuthContext();
+
+  if (isLoading || !authedUser) {
+    return null;
   }
 
-  // Role check can be implemented with useAuthContext when needed
-  if (allowedRoles) {
-    // For now, allow all authenticated users
+  if (!roles || roles.length === 0) {
+    return <>{children}</>;
+  }
+
+  if (!hasRole(roles)) {
+    return <Navigate to="/not-access" replace />;
   }
 
   return <>{children}</>;

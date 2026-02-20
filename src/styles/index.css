@@ -122,11 +122,15 @@
   * {
     @apply border-border outline-ring/50;
     }
+  html,
   body {
-    @apply font-sans bg-background text-foreground;
+    @apply h-full overflow-hidden font-sans;
     }
-  html {
-    @apply font-sans;
+  body {
+    @apply bg-background text-foreground;
+    }
+  #root {
+    @apply h-full;
     }
 }
 
@@ -134,12 +138,15 @@
    Scrollbar Styles
    ============================ */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 8px;
+  background: color-mix(in oklch, var(--primary) 25%, transparent);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--primary) 40%, transparent);
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -147,5 +154,5 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: color-mix(in oklch, var(--primary) 25%, transparent) transparent;
 }

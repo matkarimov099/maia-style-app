@@ -1,46 +1,50 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { type ReactNode, useCallback, useMemo } from 'react';
-import { AuthContext, type AuthedUser } from '@/context/auth-context';
-import { authService } from '@/features/auth/services/auth.service';
+import type { PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router';
+import { AuthContext } from '@/context/auth-context';
+import { useAuthedUser, useLogout } from '@/features/auth/hooks/use-auth';
 import { clearAuth, isAuthenticated } from '@/lib/auth';
 import type { Role } from '@/types/enums';
+import { tokenUtils } from '@/utils/token';
 
-export function AuthContextProvider({ children }: { children: ReactNode }) {
-  const queryClient = useQueryClient();
+export default function AuthContextProvider({ children }: PropsWithChildren) {
+  const navigate = useNavigate();
 
-  const { data: authedUser, isLoading } = useQuery({
-    queryKey: ['auth', 'me'],
-    queryFn: () => authService.getMe(),
-    enabled: isAuthenticated(),
-    staleTime: 5 * 60 * 1000,
-    retry: 1,
-  });
+  const { mutate: logoutUser, isPending: logoutPending } = useLogout();
+  const { data: userData, isPending: userPending, isSuccess: userSuccess } = useAuthedUser();
 
-  const logout = useCallback(() => {
-    clearAuth();
-    queryClient.clear();
-    window.location.href = '/auth/login';
-  }, [queryClient]);
+  const logout = () =>
+    logoutUser(undefined, {
+      onSuccess: () => {
+        clearAuth();
+        navigate('/auth/login');
+      },
+    });
 
-  const hasRole = useCallback(
-    (...roles: Role[]) => {
-      if (!authedUser?.role) return false;
-      return roles.includes(authedUser.role);
-    },
-    [authedUser]
+  const authedUser = userData ?? null;
+  const authToken = tokenUtils.getAccessToken();
+
+  const hasRole = (roles: Role | Role[]) => {
+    const role = authedUser?.role;
+    return !!role && (Array.isArray(roles) ? roles.includes(role) : role === roles);
+  };
+
+  const authenticated = isAuthenticated();
+  const isLoading = logoutPending || (authenticated && userPending && !authedUser);
+  const isLoggedIn = authenticated && (!!authedUser || userSuccess);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        authToken,
+        authedUser,
+        role: authedUser?.role || null,
+        hasRole,
+        logout,
+        isLoading,
+        isLoggedIn,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
-
-  const value = useMemo(
-    () => ({
-      authedUser: (authedUser as AuthedUser) ?? null,
-      role: (authedUser?.role as Role) ?? null,
-      isLoggedIn: !!authedUser,
-      isLoading,
-      hasRole,
-      logout,
-    }),
-    [authedUser, isLoading, hasRole, logout]
-  );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

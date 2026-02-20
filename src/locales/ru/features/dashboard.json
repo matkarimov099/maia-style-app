@@ -3,15 +3,18 @@
     "title": "Панель управления",
     "subtitle": "Общий обзор",
     "stats": {
-      "totalUsers": "Всего пользователей",
-      "totalProducts": "Всего товаров",
-      "totalRevenue": "Общий доход",
-      "newOrders": "Новые заказы"
+      "revenue": "Доход",
+      "avgOrderValue": "Средний чек",
+      "totalOrders": "Всего заказов",
+      "totalSalesCost": "Продажи и расходы",
+      "last28Days": "Последние 28 дней",
+      "thanLastWeek": "по сравнению с прошлой неделей",
+      "vsPrev28Days": "по сравнению с предыдущими 28 днями"
     },
     "charts": {
-      "revenue": "График доходов",
-      "users": "Статистика пользователей",
-      "products": "Статистика товаров"
+      "transactionsActivity": "Активность транзакций",
+      "week": "Неделя",
+      "month": "Месяц"
     }
   }
 }

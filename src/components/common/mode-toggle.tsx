@@ -1,24 +1,49 @@
-import { useTranslation } from 'react-i18next';
+import { IconMoon, IconSun } from '@tabler/icons-react';
 import { useTheme } from '@/hooks/use-theme';
+import { cn } from '@/lib/utils';
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
-  const { t } = useTranslation();
 
-  const toggleTheme = () => {
-    if (theme === 'light') setTheme('dark');
-    else if (theme === 'dark') setTheme('system');
-    else setTheme('light');
+  const systemIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = theme === 'dark' || (theme === 'system' && systemIsDark);
+
+  const toggle = () => {
+    setTheme(isDark ? 'light' : 'dark');
   };
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border bg-background text-sm hover:bg-accent"
-      title={t('theme.toggle')}
+      onClick={toggle}
+      className="relative flex h-10 w-[4.75rem] items-center rounded-full bg-muted p-1 transition-colors duration-300"
+      aria-label="Toggle theme"
     >
-      {theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '💻'}
+      {/* Sliding indicator */}
+      <span
+        className={cn(
+          'absolute h-8 w-8 rounded-full bg-background shadow-md transition-transform duration-300 ease-in-out',
+          isDark ? 'translate-x-[calc(100%+2px)]' : 'translate-x-0'
+        )}
+      />
+      {/* Sun */}
+      <span
+        className={cn(
+          'relative z-10 flex h-8 w-8 items-center justify-center transition-colors duration-300',
+          !isDark ? 'text-foreground' : 'text-muted-foreground/40'
+        )}
+      >
+        <IconSun className="h-5 w-5" />
+      </span>
+      {/* Moon */}
+      <span
+        className={cn(
+          'relative z-10 flex h-8 w-8 items-center justify-center transition-colors duration-300',
+          isDark ? 'text-foreground' : 'text-muted-foreground/40'
+        )}
+      >
+        <IconMoon className="h-5 w-5" />
+      </span>
     </button>
   );
 }

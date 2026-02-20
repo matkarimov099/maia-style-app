@@ -78,6 +78,19 @@
       "export": "Eksport",
       "clearFilters": "Filtrlarni tozalash"
     },
+    "errors": {
+      "notFound": {
+        "title": "Sahifa topilmadi",
+        "description": "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan bo'lishi mumkin.",
+        "backHome": "Bosh sahifaga qaytish"
+      },
+      "forbidden": {
+        "title": "Kirish taqiqlangan",
+        "description": "Sizda ushbu sahifani ko'rish uchun yetarli huquqlar mavjud emas. Iltimos, administratorga murojaat qiling.",
+        "backHome": "Bosh sahifaga qaytish",
+        "login": "Qayta kirish"
+      }
+    },
     "pagination": {
       "previous": "Oldingi",
       "next": "Keyingi",
