@@ -21,16 +21,18 @@ interface DeleteUserDialogProps {
 
 export function DeleteUserDialog({ userId, fullName, open, onOpenChange }: DeleteUserDialogProps) {
   const { t } = useTranslation();
-  const deleteUser = useDeleteUser();
+  const { mutate: deleteUser, isPending } = useDeleteUser();
 
-  const handleDelete = async () => {
-    try {
-      await deleteUser.mutateAsync(userId);
-      toast.success(t('users.success.deleted'));
-      onOpenChange(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const handleDelete = () => {
+    deleteUser(userId, {
+      onSuccess: () => {
+        toast.success(t('users.success.deleted'));
+        onOpenChange(false);
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || t('common.states.error'));
+      },
+    });
   };
 
   return (
@@ -44,12 +46,8 @@ export function DeleteUserDialog({ userId, fullName, open, onOpenChange }: Delet
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{t('common.actions.cancel')}</AlertDialogCancel>
-          <AlertDialogAction
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={deleteUser.isPending}
-          >
-            {deleteUser.isPending ? t('common.actions.deleting') : t('common.actions.delete')}
+          <AlertDialogAction variant="destructive" onClick={handleDelete} disabled={isPending}>
+            {isPending ? t('common.actions.deleting') : t('common.actions.delete')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

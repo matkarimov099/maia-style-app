@@ -26,12 +26,13 @@ import {
 } from '@/components/ui/select';
 import { useCreateUser } from '@/features/users/hooks/use-users';
 import { createUserSchema } from '@/features/users/schema/users.schema';
+import type { Role } from '@/types/enums';
 import { RoleValues } from '@/types/enums';
 
 export function CreateUserDialog() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const createUser = useCreateUser();
+  const { mutate: createUser, isPending } = useCreateUser();
 
   const schema = createUserSchema(t);
   type FormValues = z.infer<typeof schema>;
@@ -48,15 +49,17 @@ export function CreateUserDialog() {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
-    try {
-      await createUser.mutateAsync(values);
-      toast.success(t('users.success.created'));
-      form.reset();
-      setOpen(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const onSubmit = (values: FormValues) => {
+    createUser(values, {
+      onSuccess: () => {
+        toast.success(t('users.success.created'));
+        form.reset();
+        setOpen(false);
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || t('common.states.error'));
+      },
+    });
   };
 
   const handleOpenChange = (value: boolean) => {
@@ -134,7 +137,9 @@ export function CreateUserDialog() {
             <FieldLabel>{t('users.fields.role.label')}</FieldLabel>
             <Select
               value={form.watch('role')}
-              onValueChange={value => form.setValue('role', value, { shouldValidate: true })}
+              onValueChange={value =>
+                form.setValue('role', value as Role, { shouldValidate: true })
+              }
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={t('users.fields.role.placeholder')} />
@@ -154,8 +159,8 @@ export function CreateUserDialog() {
             <Button type="button" variant="outline" onClick={() => handleOpenChange(false)}>
               {t('common.actions.cancel')}
             </Button>
-            <Button type="submit" disabled={createUser.isPending}>
-              {createUser.isPending ? t('common.actions.creating') : t('common.actions.create')}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.actions.creating') : t('common.actions.create')}
             </Button>
           </DialogFooter>
         </form>

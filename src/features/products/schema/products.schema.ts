@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next';
 import { z } from 'zod';
+import type { ProductCategory, ProductStatus } from '@/types/enums';
 import { ProductCategoryValues, ProductStatusValues } from '@/types/enums';
 
 export const createProductSchema = (t: TFunction) => {
@@ -10,7 +11,7 @@ export const createProductSchema = (t: TFunction) => {
     price: z
       .number({ message: t('products.fields.price.validation.required') })
       .min(0, t('products.fields.price.validation.min', { min: 0 })),
-    category: z.enum(ProductCategoryValues as [string, ...string[]], {
+    category: z.enum(ProductCategoryValues as [ProductCategory, ...ProductCategory[]], {
       message: t('products.fields.category.validation.required'),
     }),
     status: z.string().optional(),
@@ -26,10 +27,10 @@ export const updateProductSchema = (t: TFunction) => {
     price: z
       .number({ message: t('products.fields.price.validation.required') })
       .min(0, t('products.fields.price.validation.min', { min: 0 })),
-    category: z.enum(ProductCategoryValues as [string, ...string[]], {
+    category: z.enum(ProductCategoryValues as [ProductCategory, ...ProductCategory[]], {
       message: t('products.fields.category.validation.required'),
     }),
-    status: z.enum(ProductStatusValues as [string, ...string[]], {
+    status: z.enum(ProductStatusValues as [ProductStatus, ...ProductStatus[]], {
       message: t('products.fields.status.validation.required'),
     }),
   });

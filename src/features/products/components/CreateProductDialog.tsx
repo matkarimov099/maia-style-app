@@ -26,12 +26,13 @@ import {
 } from '@/components/ui/select';
 import { useCreateProduct } from '@/features/products/hooks/use-products';
 import { createProductSchema } from '@/features/products/schema/products.schema';
+import type { ProductCategory } from '@/types/enums';
 import { ProductCategoryValues } from '@/types/enums';
 
 export function CreateProductDialog() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const createProduct = useCreateProduct();
+  const { mutate: createProduct, isPending } = useCreateProduct();
 
   const schema = createProductSchema(t);
   type FormValues = z.infer<typeof schema>;
@@ -46,15 +47,17 @@ export function CreateProductDialog() {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
-    try {
-      await createProduct.mutateAsync(values);
-      toast.success(t('products.success.created'));
-      form.reset();
-      setOpen(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const onSubmit = (values: FormValues) => {
+    createProduct(values, {
+      onSuccess: () => {
+        toast.success(t('products.success.created'));
+        form.reset();
+        setOpen(false);
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || t('common.states.error'));
+      },
+    });
   };
 
   const handleOpenChange = (value: boolean) => {
@@ -99,7 +102,9 @@ export function CreateProductDialog() {
             <FieldLabel>{t('products.fields.category.label')}</FieldLabel>
             <Select
               value={form.watch('category')}
-              onValueChange={value => form.setValue('category', value, { shouldValidate: true })}
+              onValueChange={value =>
+                form.setValue('category', value as ProductCategory, { shouldValidate: true })
+              }
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={t('products.fields.category.placeholder')} />
@@ -119,8 +124,8 @@ export function CreateProductDialog() {
             <Button type="button" variant="outline" onClick={() => handleOpenChange(false)}>
               {t('common.actions.cancel')}
             </Button>
-            <Button type="submit" disabled={createProduct.isPending}>
-              {createProduct.isPending ? t('common.actions.creating') : t('common.actions.create')}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.actions.creating') : t('common.actions.create')}
             </Button>
           </DialogFooter>
         </form>

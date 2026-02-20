@@ -25,6 +25,7 @@ import {
 import { useUpdateUser } from '@/features/users/hooks/use-users';
 import { updateUserSchema } from '@/features/users/schema/users.schema';
 import type { User } from '@/features/users/types';
+import type { Role, UserStatus } from '@/types/enums';
 import { RoleValues, UserStatusValues } from '@/types/enums';
 
 interface EditUserDialogProps {
@@ -35,7 +36,7 @@ interface EditUserDialogProps {
 
 export function EditUserDialog({ user, open, onOpenChange }: EditUserDialogProps) {
   const { t } = useTranslation();
-  const updateUser = useUpdateUser();
+  const { mutate: updateUser, isPending } = useUpdateUser();
 
   const schema = updateUserSchema(t);
   type FormValues = z.infer<typeof schema>;
@@ -63,14 +64,19 @@ export function EditUserDialog({ user, open, onOpenChange }: EditUserDialogProps
     }
   }, [open, user, form]);
 
-  const onSubmit = async (values: FormValues) => {
-    try {
-      await updateUser.mutateAsync({ id: user.id, ...values });
-      toast.success(t('users.success.updated'));
-      onOpenChange(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const onSubmit = (values: FormValues) => {
+    updateUser(
+      { id: user.id, ...values },
+      {
+        onSuccess: () => {
+          toast.success(t('users.success.updated'));
+          onOpenChange(false);
+        },
+        onError: (error: Error) => {
+          toast.error(error.message || t('common.states.error'));
+        },
+      }
+    );
   };
 
   return (
@@ -117,7 +123,9 @@ export function EditUserDialog({ user, open, onOpenChange }: EditUserDialogProps
               <FieldLabel>{t('users.fields.role.label')}</FieldLabel>
               <Select
                 value={form.watch('role')}
-                onValueChange={value => form.setValue('role', value, { shouldValidate: true })}
+                onValueChange={value =>
+                  form.setValue('role', value as Role, { shouldValidate: true })
+                }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={t('users.fields.role.placeholder')} />
@@ -137,7 +145,9 @@ export function EditUserDialog({ user, open, onOpenChange }: EditUserDialogProps
               <FieldLabel>{t('users.fields.status.label')}</FieldLabel>
               <Select
                 value={form.watch('status')}
-                onValueChange={value => form.setValue('status', value, { shouldValidate: true })}
+                onValueChange={value =>
+                  form.setValue('status', value as UserStatus, { shouldValidate: true })
+                }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={t('users.fields.status.placeholder')} />
@@ -158,8 +168,8 @@ export function EditUserDialog({ user, open, onOpenChange }: EditUserDialogProps
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               {t('common.actions.cancel')}
             </Button>
-            <Button type="submit" disabled={updateUser.isPending}>
-              {updateUser.isPending ? t('common.actions.saving') : t('common.actions.save')}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.actions.saving') : t('common.actions.save')}
             </Button>
           </DialogFooter>
         </form>

@@ -25,6 +25,7 @@ import {
 import { useUpdateProduct } from '@/features/products/hooks/use-products';
 import { updateProductSchema } from '@/features/products/schema/products.schema';
 import type { Product } from '@/features/products/types';
+import type { ProductCategory, ProductStatus } from '@/types/enums';
 import { ProductCategoryValues, ProductStatusValues } from '@/types/enums';
 
 interface EditProductDialogProps {
@@ -35,7 +36,7 @@ interface EditProductDialogProps {
 
 export function EditProductDialog({ product, open, onOpenChange }: EditProductDialogProps) {
   const { t } = useTranslation();
-  const updateProduct = useUpdateProduct();
+  const { mutate: updateProduct, isPending } = useUpdateProduct();
 
   const schema = updateProductSchema(t);
   type FormValues = z.infer<typeof schema>;
@@ -61,14 +62,19 @@ export function EditProductDialog({ product, open, onOpenChange }: EditProductDi
     }
   }, [open, product, form]);
 
-  const onSubmit = async (values: FormValues) => {
-    try {
-      await updateProduct.mutateAsync({ id: product.id, ...values });
-      toast.success(t('products.success.updated'));
-      onOpenChange(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const onSubmit = (values: FormValues) => {
+    updateProduct(
+      { id: product.id, ...values },
+      {
+        onSuccess: () => {
+          toast.success(t('products.success.updated'));
+          onOpenChange(false);
+        },
+        onError: (error: Error) => {
+          toast.error(error.message || t('common.states.error'));
+        },
+      }
+    );
   };
 
   return (
@@ -101,7 +107,9 @@ export function EditProductDialog({ product, open, onOpenChange }: EditProductDi
               <FieldLabel>{t('products.fields.category.label')}</FieldLabel>
               <Select
                 value={form.watch('category')}
-                onValueChange={value => form.setValue('category', value, { shouldValidate: true })}
+                onValueChange={value =>
+                  form.setValue('category', value as ProductCategory, { shouldValidate: true })
+                }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={t('products.fields.category.placeholder')} />
@@ -121,7 +129,9 @@ export function EditProductDialog({ product, open, onOpenChange }: EditProductDi
               <FieldLabel>{t('products.fields.status.label')}</FieldLabel>
               <Select
                 value={form.watch('status')}
-                onValueChange={value => form.setValue('status', value, { shouldValidate: true })}
+                onValueChange={value =>
+                  form.setValue('status', value as ProductStatus, { shouldValidate: true })
+                }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={t('products.fields.status.placeholder')} />
@@ -142,8 +152,8 @@ export function EditProductDialog({ product, open, onOpenChange }: EditProductDi
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               {t('common.actions.cancel')}
             </Button>
-            <Button type="submit" disabled={updateProduct.isPending}>
-              {updateProduct.isPending ? t('common.actions.saving') : t('common.actions.save')}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t('common.actions.saving') : t('common.actions.save')}
             </Button>
           </DialogFooter>
         </form>

@@ -2,8 +2,8 @@ import { DataTable } from '@/components/data-table/data-table';
 import type { Product } from '@/features/products/types';
 import { productsTableConfig } from '../utils/table-config';
 import { useProductsData } from '../utils/use-products-data';
-import { getColumns } from './columns';
-import { CreateProductDialog } from './create-product-dialog';
+import { getColumns } from './Columns';
+import { CreateProductDialog } from './CreateProductDialog';
 
 export default function ProductsTable() {
   const {

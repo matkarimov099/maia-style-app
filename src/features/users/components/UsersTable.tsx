@@ -2,8 +2,8 @@ import { DataTable } from '@/components/data-table/data-table';
 import type { User } from '@/features/users/types';
 import { usersTableConfig } from '../utils/table-config';
 import { useUsersData } from '../utils/use-users-data';
-import { getColumns } from './columns';
-import { CreateUserDialog } from './create-user-dialog';
+import { getColumns } from './Columns';
+import { CreateUserDialog } from './CreateUserDialog';
 
 export default function UsersTable() {
   const {

@@ -3,7 +3,7 @@ import type { TFunction } from 'i18next';
 import { DataTableColumnHeader } from '@/components/data-table/column-header';
 import { Badge } from '@/components/ui/badge';
 import type { User } from '@/features/users/types';
-import { RowActions } from './row-actions';
+import { RowActions } from './RowActions';
 
 function getRoleBadgeVariant(role: string): 'default' | 'secondary' | 'outline' {
   switch (role) {

@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next';
 import { z } from 'zod';
+import type { Role, UserStatus } from '@/types/enums';
 import { RoleValues, UserStatusValues } from '@/types/enums';
 
 export const createUserSchema = (t: TFunction) => {
@@ -15,7 +16,7 @@ export const createUserSchema = (t: TFunction) => {
     password: z
       .string({ message: t('users.fields.password.validation.required') })
       .min(6, t('users.fields.password.validation.minLength', { min: 6 })),
-    role: z.enum(RoleValues as [string, ...string[]], {
+    role: z.enum(RoleValues as [Role, ...Role[]], {
       message: t('users.fields.role.validation.required'),
     }),
   });
@@ -28,9 +29,9 @@ export const updateUserSchema = (t: TFunction) => {
     email: z
       .string({ message: t('users.fields.email.validation.required') })
       .email(t('users.fields.email.validation.invalid')),
-    role: z.enum(RoleValues as [string, ...string[]], {
+    role: z.enum(RoleValues as [Role, ...Role[]], {
       message: t('users.fields.role.validation.required'),
     }),
-    status: z.enum(UserStatusValues as [string, ...string[]]),
+    status: z.enum(UserStatusValues as [UserStatus, ...UserStatus[]]),
   });
 };

@@ -3,7 +3,7 @@ import type { TFunction } from 'i18next';
 import { DataTableColumnHeader } from '@/components/data-table/column-header';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/features/products/types';
-import { RowActions } from './row-actions';
+import { RowActions } from './RowActions';
 
 function getCategoryBadgeVariant(category: string): 'default' | 'secondary' | 'outline' {
   switch (category) {

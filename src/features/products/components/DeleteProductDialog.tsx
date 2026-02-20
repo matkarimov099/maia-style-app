@@ -26,16 +26,18 @@ export function DeleteProductDialog({
   onOpenChange,
 }: DeleteProductDialogProps) {
   const { t } = useTranslation();
-  const deleteProduct = useDeleteProduct();
+  const { mutate: deleteProduct, isPending } = useDeleteProduct();
 
-  const handleDelete = async () => {
-    try {
-      await deleteProduct.mutateAsync(productId);
-      toast.success(t('products.success.deleted'));
-      onOpenChange(false);
-    } catch {
-      toast.error(t('common.states.error'));
-    }
+  const handleDelete = () => {
+    deleteProduct(productId, {
+      onSuccess: () => {
+        toast.success(t('products.success.deleted'));
+        onOpenChange(false);
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || t('common.states.error'));
+      },
+    });
   };
 
   return (
@@ -49,12 +51,8 @@ export function DeleteProductDialog({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{t('common.actions.cancel')}</AlertDialogCancel>
-          <AlertDialogAction
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={deleteProduct.isPending}
-          >
-            {deleteProduct.isPending ? t('common.actions.deleting') : t('common.actions.delete')}
+          <AlertDialogAction variant="destructive" onClick={handleDelete} disabled={isPending}>
+            {isPending ? t('common.actions.deleting') : t('common.actions.delete')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

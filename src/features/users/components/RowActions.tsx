@@ -1,16 +1,16 @@
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import type { Product } from '@/features/products/types';
+import type { User } from '@/features/users/types';
 import { useDisclosure } from '@/hooks/use-disclosure';
-import { DeleteProductDialog } from './delete-product-dialog';
-import { EditProductDialog } from './edit-product-dialog';
+import { DeleteUserDialog } from './DeleteUserDialog';
+import { EditUserDialog } from './EditUserDialog';
 
 interface RowActionsProps {
-  product: Product;
+  user: User;
 }
 
-export function RowActions({ product }: RowActionsProps) {
+export function RowActions({ user }: RowActionsProps) {
   const { t } = useTranslation();
   const editDialog = useDisclosure();
   const deleteDialog = useDisclosure();
@@ -38,17 +38,13 @@ export function RowActions({ product }: RowActionsProps) {
       </div>
 
       {editDialog.isOpen && (
-        <EditProductDialog
-          product={product}
-          open={editDialog.isOpen}
-          onOpenChange={editDialog.setIsOpen}
-        />
+        <EditUserDialog user={user} open={editDialog.isOpen} onOpenChange={editDialog.setIsOpen} />
       )}
 
       {deleteDialog.isOpen && (
-        <DeleteProductDialog
-          productId={product.id}
-          productName={product.name}
+        <DeleteUserDialog
+          userId={user.id}
+          fullName={`${user.firstname} ${user.lastname}`}
           open={deleteDialog.isOpen}
           onOpenChange={deleteDialog.setIsOpen}
         />

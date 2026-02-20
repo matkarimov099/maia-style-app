@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 
-const ProductsTable = lazy(() => import('@/features/products/components/products-table'));
+const ProductsTable = lazy(() => import('@/features/products/components/ProductsTable'));
 
 export default function Products() {
   return (
