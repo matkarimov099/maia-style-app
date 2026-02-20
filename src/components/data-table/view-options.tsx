@@ -1,5 +1,5 @@
+import { IconAdjustments, IconCheck, IconGripVertical, IconRotate } from '@tabler/icons-react';
 import type { Column, Table } from '@tanstack/react-table';
-import { Check, GripVertical, RotateCcw, Settings2 } from 'lucide-react';
 import * as React from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ import {
   CommandSeparator,
 } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/utils/utils';
+import { cn } from '@/lib/utils';
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -167,11 +167,11 @@ export function DataTableViewOptions<TData>({
         <Button
           aria-label={t('common.table.showColumns')}
           variant="outline"
-          size={size}
-          leftIcon={<Settings2 className="h-4 w-4" />}
-          hideIcon={false}
+          size={size === 'sm' ? 'icon-sm' : 'icon'}
           className="ml-auto"
-        />
+        >
+          <IconAdjustments className="h-4 w-4" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-fit p-0">
         <Command className="bg-transparent">
@@ -188,13 +188,13 @@ export function DataTableViewOptions<TData>({
                   onDragOver={handleDragOver}
                   onDrop={e => handleDrop(e, column.id)}
                   className={cn(
-                    'flex cursor-grab items-center hover:[&_svg]:text-(--label)',
+                    'flex cursor-grab items-center hover:[&_svg]:text-foreground',
                     draggedColumnId === column.id && 'bg-accent opacity-50'
                   )}
                 >
-                  <GripVertical className="mr-2 h-4 w-4 cursor-grab" />
+                  <IconGripVertical className="mr-2 h-4 w-4 cursor-grab" />
                   <span className="grow truncate capitalize">{getColumnLabel(column)}</span>
-                  <Check
+                  <IconCheck
                     className={cn(
                       'ml-auto h-4 w-4',
                       column.getIsVisible() ? 'opacity-100' : 'opacity-0'
@@ -209,7 +209,7 @@ export function DataTableViewOptions<TData>({
                 onSelect={resetColumnOrder}
                 className="cursor-pointer justify-center text-center"
               >
-                <RotateCcw className="mr-2 h-4 w-4" />
+                <IconRotate className="mr-2 h-4 w-4" />
                 {t('common.table.resetColumns')}
               </CommandItem>
             </CommandGroup>

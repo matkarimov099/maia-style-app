@@ -1,5 +1,5 @@
+import { IconDownload, IconFileSpreadsheet, IconFileText, IconLoader2 } from '@tabler/icons-react';
 import type { Table } from '@tanstack/react-table';
-import { DownloadIcon, FileSpreadsheetIcon, FileTextIcon, Loader2 } from 'lucide-react';
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useIsMobile } from '@/hooks/use-mobile.ts';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { exportData, exportToCSV, exportToExcel } from './utils/export-utils';
 
 interface DataTableExportProps<TData> {
@@ -345,28 +345,26 @@ export function DataTableExport<TData>({
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          size={size}
+          size={size === 'sm' ? 'icon-sm' : 'icon'}
           disabled={isLoading}
-          leftIcon={
-            isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <DownloadIcon className="h-4 w-4" />
-            )
-          }
-          hideIcon={false}
           aria-label={hasSelection ? `Export selected ${entityName}` : `Export all ${entityName}`}
-        />
+        >
+          {isLoading ? (
+            <IconLoader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <IconDownload className="h-4 w-4" />
+          )}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={isMobile ? 'center' : 'end'} className="w-80">
         {hasSelection ? (
           <>
             <DropdownMenuItem onClick={() => handleExport('csv')} disabled={isLoading}>
-              <FileTextIcon className="mr-2" />
+              <IconFileText className="mr-2" />
               {t('common.table.exportSelectedCSV')}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => handleExport('excel')} disabled={isLoading}>
-              <FileSpreadsheetIcon className="mr-2" />
+              <IconFileSpreadsheet className="mr-2" />
               {t('common.table.exportSelectedExcel')}
             </DropdownMenuItem>
           </>
@@ -377,7 +375,7 @@ export function DataTableExport<TData>({
               onClick={() => handleExport('csv')}
               disabled={isLoading}
             >
-              <FileTextIcon className="mr-2 h-4 w-4" />
+              <IconFileText className="mr-2 h-4 w-4" />
               {t('common.table.exportCurrentPageCSV')}
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -385,7 +383,7 @@ export function DataTableExport<TData>({
               onClick={() => handleExport('excel')}
               disabled={isLoading}
             >
-              <FileSpreadsheetIcon className="mr-2 h-4 w-4" />
+              <IconFileSpreadsheet className="mr-2 h-4 w-4" />
               {t('common.table.exportCurrentPageExcel')}
             </DropdownMenuItem>
             {getAllItems && (
@@ -395,7 +393,7 @@ export function DataTableExport<TData>({
                   onClick={() => exportAllPages('csv')}
                   disabled={isLoading}
                 >
-                  <FileTextIcon className="mr-2 h-4 w-4" />
+                  <IconFileText className="mr-2 h-4 w-4" />
                   {t('common.table.exportAllPagesCSV')}
                 </DropdownMenuItem>
                 <DropdownMenuItem
@@ -403,7 +401,7 @@ export function DataTableExport<TData>({
                   onClick={() => exportAllPages('excel')}
                   disabled={isLoading}
                 >
-                  <FileSpreadsheetIcon className="mr-2 h-4 w-4" />
+                  <IconFileSpreadsheet className="mr-2 h-4 w-4" />
                   {t('common.table.exportAllPagesExcel')}
                 </DropdownMenuItem>
               </>

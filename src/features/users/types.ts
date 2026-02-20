@@ -15,9 +15,12 @@ export interface User {
 }
 
 export interface UserFilter extends PaginationFilter {
+  search?: string;
   username?: string;
   role?: Role;
   status?: UserStatus;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
 }
 
 export interface CreateUserDto {

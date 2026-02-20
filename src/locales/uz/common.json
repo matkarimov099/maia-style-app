@@ -39,7 +39,8 @@
       "copy": "Nusxalash",
       "copied": "Nusxalandi",
       "settings": "Sozlamalar",
-      "logout": "Chiqish"
+      "logout": "Chiqish",
+      "hide": "Yashirish"
     },
     "states": {
       "loading": "Yuklanmoqda...",
@@ -65,7 +66,9 @@
       "selected": "Tanlangan",
       "noData": "Ma'lumot mavjud emas",
       "noResults": "Natija topilmadi",
-      "searchPlaceholder": "Qidirish..."
+      "searchPlaceholder": "Qidirish...",
+      "asc": "O'sish tartibida",
+      "desc": "Kamayish tartibida"
     },
     "table": {
       "actions": "Amallar",
@@ -76,7 +79,19 @@
       "filter": "Filtr",
       "columns": "Ustunlar",
       "export": "Eksport",
-      "clearFilters": "Filtrlarni tozalash"
+      "clearFilters": "Filtrlarni tozalash",
+      "showColumns": "Ustunlarni ko'rsatish",
+      "resetColumns": "Ustunlarni tiklash",
+      "settings": "Jadval sozlamalari",
+      "settingsDescription": "Jadval ko'rinishi va ustun sozlamalarini boshqaring",
+      "resetColumnSizes": "Ustun o'lchamlarini tiklash",
+      "resetColumnOrder": "Ustun tartibini tiklash",
+      "exportSelectedCSV": "Tanlanganlarni CSV ga eksport",
+      "exportSelectedExcel": "Tanlanganlarni Excel ga eksport",
+      "exportCurrentPageCSV": "Joriy sahifani CSV ga eksport",
+      "exportCurrentPageExcel": "Joriy sahifani Excel ga eksport",
+      "exportAllPagesCSV": "Barcha sahifalarni CSV ga eksport",
+      "exportAllPagesExcel": "Barcha sahifalarni Excel ga eksport"
     },
     "errors": {
       "notFound": {
@@ -98,9 +113,13 @@
       "last": "Oxirgi",
       "page": "Sahifa",
       "of": "dan",
+      "of_total": "jami",
       "showing": "Ko'rsatilmoqda",
       "items": "ta",
-      "per_page": "har sahifada"
+      "per_page": "har sahifada",
+      "selectPage": "Sahifa tanlash",
+      "searchColumns": "Ustun qidirish...",
+      "noColumns": "Ustun topilmadi"
     }
   },
   "theme": {
@@ -112,8 +131,7 @@
   "enums": {
     "role": {
       "ADMIN": "Administrator",
-      "MANAGER": "Menejer",
-      "USER": "Foydalanuvchi"
+      "SUPER_ADMIN": "Super administrator"
     },
     "userStatus": {
       "ACTIVE": "Faol",

@@ -46,7 +46,6 @@ const statsCards = [
   },
 ];
 
-
 const monthlyData = [
   { name: 'Jan', value: 200 },
   { name: 'Feb', value: 180 },

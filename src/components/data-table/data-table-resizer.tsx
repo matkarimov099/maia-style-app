@@ -1,7 +1,7 @@
+import { IconGripVertical } from '@tabler/icons-react';
 import type { Header } from '@tanstack/react-table';
-import { GripVertical } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { cn } from '@/utils/utils';
+import { cn } from '@/lib/utils';
 
 interface DataTableResizerProps<TData> {
   header: Header<TData, unknown>;
@@ -32,8 +32,8 @@ export function DataTableResizer<TData>({ header }: DataTableResizerProps<TData>
           )}
         />
 
-        {/* Use the GripVertical icon for better visual indication */}
-        <GripVertical
+        {/* Use the IconGripVertical icon for better visual indication */}
+        <IconGripVertical
           className={cn(
             'absolute h-4 w-4 text-muted-foreground/70',
             isResizing ? 'text-primary' : 'text-muted-foreground/70'

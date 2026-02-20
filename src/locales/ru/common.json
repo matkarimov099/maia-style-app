@@ -39,7 +39,8 @@
       "copy": "Копировать",
       "copied": "Скопировано",
       "settings": "Настройки",
-      "logout": "Выйти"
+      "logout": "Выйти",
+      "hide": "Скрыть"
     },
     "states": {
       "loading": "Загрузка...",
@@ -65,7 +66,9 @@
       "selected": "Выбрано",
       "noData": "Нет данных",
       "noResults": "Результатов не найдено",
-      "searchPlaceholder": "Поиск..."
+      "searchPlaceholder": "Поиск...",
+      "asc": "По возрастанию",
+      "desc": "По убыванию"
     },
     "table": {
       "actions": "Действия",
@@ -76,7 +79,19 @@
       "filter": "Фильтр",
       "columns": "Столбцы",
       "export": "Экспорт",
-      "clearFilters": "Очистить фильтры"
+      "clearFilters": "Очистить фильтры",
+      "showColumns": "Показать столбцы",
+      "resetColumns": "Сбросить столбцы",
+      "settings": "Настройки таблицы",
+      "settingsDescription": "Управление отображением таблицы и столбцов",
+      "resetColumnSizes": "Сбросить размеры столбцов",
+      "resetColumnOrder": "Сбросить порядок столбцов",
+      "exportSelectedCSV": "Экспорт выбранных в CSV",
+      "exportSelectedExcel": "Экспорт выбранных в Excel",
+      "exportCurrentPageCSV": "Экспорт текущей страницы в CSV",
+      "exportCurrentPageExcel": "Экспорт текущей страницы в Excel",
+      "exportAllPagesCSV": "Экспорт всех страниц в CSV",
+      "exportAllPagesExcel": "Экспорт всех страниц в Excel"
     },
     "errors": {
       "notFound": {
@@ -98,9 +113,13 @@
       "last": "Последняя",
       "page": "Страница",
       "of": "из",
+      "of_total": "всего",
       "showing": "Показано",
       "items": "записей",
-      "per_page": "на странице"
+      "per_page": "на странице",
+      "selectPage": "Выбрать страницу",
+      "searchColumns": "Поиск столбцов...",
+      "noColumns": "Столбцы не найдены"
     }
   },
   "theme": {
@@ -112,8 +131,7 @@
   "enums": {
     "role": {
       "ADMIN": "Администратор",
-      "MANAGER": "Менеджер",
-      "USER": "Пользователь"
+      "SUPER_ADMIN": "Супер администратор"
     },
     "userStatus": {
       "ACTIVE": "Активный",

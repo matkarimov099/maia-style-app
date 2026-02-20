@@ -2,6 +2,18 @@
   "users": {
     "title": "Foydalanuvchilar",
     "subtitle": "Foydalanuvchilar ro'yxati",
+    "table": {
+      "columns": {
+        "index": "#",
+        "fullName": "To'liq ism",
+        "username": "Foydalanuvchi nomi",
+        "email": "Email",
+        "role": "Rol",
+        "status": "Holat",
+        "createdAt": "Yaratilgan sana",
+        "actions": "Amallar"
+      }
+    },
     "fields": {
       "username": {
         "label": "Foydalanuvchi nomi",
@@ -33,6 +45,14 @@
           "invalid": "Email formati noto'g'ri"
         }
       },
+      "password": {
+        "label": "Parol",
+        "placeholder": "Parolni kiriting",
+        "validation": {
+          "required": "Parol majburiy",
+          "minLength": "Minimal uzunlik: {{min}} ta belgi"
+        }
+      },
       "role": {
         "label": "Rol",
         "placeholder": "Rolni tanlang",
@@ -50,6 +70,18 @@
       "edit": "Foydalanuvchini tahrirlash",
       "delete": "Foydalanuvchini o'chirish",
       "view": "Foydalanuvchini ko'rish"
+    },
+    "create": {
+      "title": "Yangi foydalanuvchi",
+      "description": "Yangi foydalanuvchi yaratish uchun quyidagi ma'lumotlarni kiriting."
+    },
+    "edit": {
+      "title": "Foydalanuvchini tahrirlash",
+      "description": "Foydalanuvchi ma'lumotlarini o'zgartiring."
+    },
+    "delete": {
+      "title": "Foydalanuvchini o'chirish",
+      "description": "{{name}} foydalanuvchisini o'chirishni xohlaysizmi? Bu amalni ortga qaytarib bo'lmaydi."
     },
     "success": {
       "created": "Foydalanuvchi muvaffaqiyatli yaratildi",

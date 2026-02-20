@@ -15,7 +15,7 @@ import type { TFunction } from 'i18next';
 import type * as React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DataTableToolbar } from '@/components/data-table/toolbar.tsx';
+import { DataTableToolbar } from '@/components/data-table/toolbar';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
@@ -25,6 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { cn } from '@/lib/utils';
 import { DataTableResizer } from './data-table-resizer';
 import { useTableColumnResize } from './hooks/use-table-column-resize';
 import { DataTablePagination } from './pagination';
@@ -549,7 +550,7 @@ export function DataTable<TData>({
         onKeyDown={tableConfig.enableKeyboardNavigation ? handleKeyDown : undefined}
       >
         <Table
-          className={`${tableConfig.enableColumnResizing ? 'resizable-table' : ''} text-foreground`}
+          className={cn(tableConfig.enableColumnResizing && 'resizable-table', 'text-foreground')}
           style={{ tableLayout: 'fixed' }}
         >
           <TableHeader>
@@ -596,7 +597,7 @@ export function DataTable<TData>({
                           className="border-border border-b text-left text-foreground"
                           tabIndex={-1}
                         >
-                          <Skeleton className="h-6 w-full border-none! bg-(--color-primary)/10" />
+                          <Skeleton className="h-6 w-full border-none! bg-primary/10" />
                         </TableCell>
                       );
                     })}
@@ -605,49 +606,46 @@ export function DataTable<TData>({
               })
             ) : table.getRowModel().rows?.length ? (
               // Data rows
-              table
-                .getRowModel()
-                .rows.map((row, rowIndex) => (
-                  <TableRow
-                    key={row.id}
-                    id={`row-${rowIndex}`}
-                    data-row-index={rowIndex}
-                    data-state={row.getIsSelected() ? 'selected' : undefined}
-                    tabIndex={0}
-                    aria-selected={row.getIsSelected()}
-                    className={`transition-colors duration-(--motion-short) hover:bg-(--control-ghost-bg) ${
-                      row.getIsSelected()
-                        ? 'bg-[color-mix(in_srgb,var(--color-primary)_10%,transparent)]'
-                        : ''
-                    }`}
-                    onClick={
-                      tableConfig.enableClickRowSelect ? () => row.toggleSelected() : undefined
+              table.getRowModel().rows.map((row, rowIndex) => (
+                <TableRow
+                  key={row.id}
+                  id={`row-${rowIndex}`}
+                  data-row-index={rowIndex}
+                  data-state={row.getIsSelected() ? 'selected' : undefined}
+                  tabIndex={0}
+                  aria-selected={row.getIsSelected()}
+                  className={cn(
+                    'transition-colors duration-200 hover:bg-muted/50',
+                    row.getIsSelected() && 'bg-primary/10'
+                  )}
+                  onClick={
+                    tableConfig.enableClickRowSelect ? () => row.toggleSelected() : undefined
+                  }
+                  onFocus={e => {
+                    // Add a data attribute to the currently focused row
+                    for (const el of document.querySelectorAll('[data-focused="true"]')) {
+                      el.removeAttribute('data-focused');
                     }
-                    onFocus={e => {
-                      // Add a data attribute to the currently focused row
-                      for (const el of document.querySelectorAll('[data-focused="true"]')) {
-                        el.removeAttribute('data-focused');
-                      }
-                      e.currentTarget.setAttribute('data-focused', 'true');
-                    }}
-                  >
-                    {row.getVisibleCells().map((cell, cellIndex) => (
-                      <TableCell
-                        className="border-border border-b text-left text-foreground transition-colors duration-200 hover:bg-muted/50"
-                        key={cell.id}
-                        id={`cell-${rowIndex}-${cellIndex}`}
-                        data-cell-index={cellIndex}
-                        style={{
-                          width: cell.column.getSize(),
-                          minWidth: cell.column.columnDef.minSize || cell.column.getSize(),
-                          maxWidth: cell.column.columnDef.maxSize,
-                        }}
-                      >
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
+                    e.currentTarget.setAttribute('data-focused', 'true');
+                  }}
+                >
+                  {row.getVisibleCells().map((cell, cellIndex) => (
+                    <TableCell
+                      className="border-border border-b text-left text-foreground transition-colors duration-200 hover:bg-muted/50"
+                      key={cell.id}
+                      id={`cell-${rowIndex}-${cellIndex}`}
+                      data-cell-index={cellIndex}
+                      style={{
+                        width: cell.column.getSize(),
+                        minWidth: cell.column.columnDef.minSize || cell.column.getSize(),
+                        maxWidth: cell.column.columnDef.maxSize,
+                      }}
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
             ) : (
               // No results
               <TableRow>

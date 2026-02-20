@@ -1,10 +1,10 @@
-import type { Table } from '@tanstack/react-table';
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from 'lucide-react';
+  IconChevronLeft,
+  IconChevronRight,
+  IconChevronsLeft,
+  IconChevronsRight,
+} from '@tabler/icons-react';
+import type { Table } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
@@ -46,7 +46,7 @@ export function DataTablePagination<TData>({
   const selectSize = size === 'lg' ? 'default' : size;
 
   return (
-    <div className="mt-2 flex w-full flex-col items-center justify-between gap-4 overflow-auto rounded-md border border-border/50 bg-background/90 px-4 py-3 shadow-sm saturate-[150%] backdrop-blur-md sm:flex-row sm:gap-8">
+    <div className="mt-2 flex w-full flex-col items-center justify-between gap-4 overflow-auto rounded-md border border-border/50 bg-card px-4 py-3 sm:flex-row sm:gap-8">
       <div className="flex-1 text-muted-foreground text-sm">
         {t('common.pagination.showing')} {totalSelectedItems} {t('common.pagination.of_total')}{' '}
         {totalItems} {t('common.pagination.items')}
@@ -76,7 +76,7 @@ export function DataTablePagination<TData>({
           >
             <SelectTrigger
               className="w-fit cursor-pointer"
-              size={selectSize === 'sm' ? 'sm' : 'md'}
+              size={selectSize === 'sm' ? 'sm' : 'default'}
               aria-label={t('common.pagination.selectPage')}
             >
               <SelectValue />
@@ -107,7 +107,7 @@ export function DataTablePagination<TData>({
             }
             disabled={!table.getCanPreviousPage()}
           >
-            <ChevronsLeftIcon className="h-4 w-4" aria-hidden="true" />
+            <IconChevronsLeft className="h-4 w-4" aria-hidden="true" />
           </Button>
           <Button
             aria-label={t('common.pagination.previous')}
@@ -121,7 +121,7 @@ export function DataTablePagination<TData>({
             }
             disabled={!table.getCanPreviousPage()}
           >
-            <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
+            <IconChevronLeft className="h-4 w-4" aria-hidden="true" />
           </Button>
           <Button
             aria-label={t('common.pagination.next')}
@@ -135,7 +135,7 @@ export function DataTablePagination<TData>({
             }
             disabled={!table.getCanNextPage()}
           >
-            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
+            <IconChevronRight className="h-4 w-4" aria-hidden="true" />
           </Button>
           <Button
             aria-label={t('common.pagination.last')}
@@ -149,7 +149,7 @@ export function DataTablePagination<TData>({
             }
             disabled={!table.getCanNextPage()}
           >
-            <ChevronsRightIcon className="h-4 w-4" aria-hidden="true" />
+            <IconChevronsRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
       </div>

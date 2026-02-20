@@ -1,8 +1,8 @@
+import { IconX } from '@tabler/icons-react';
 import type { Table } from '@tanstack/react-table';
-import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SearchInput } from '@/components/common/search-input.tsx';
+import { SearchInput } from '@/components/common/search-input';
 import { Button } from '@/components/ui/button';
 import { DataTableExport } from './data-export';
 import { TableSettings } from './table-settings';
@@ -228,11 +228,11 @@ export function DataTableToolbar<TData>({
                       table.setGlobalFilter('');
                     }
                   }}
-                  leftIcon={<X className="h-4 w-4" />}
-                  hideIcon={false}
                   className="h-8 px-2"
                   aria-label={t('common.table.clearFilters')}
-                />
+                >
+                  <IconX className="h-4 w-4" />
+                </Button>
               )}
 
               {/* Table controls */}

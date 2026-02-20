@@ -1,4 +1,4 @@
-import { Settings, Undo2 } from 'lucide-react';
+import { IconArrowBack, IconSettings } from '@tabler/icons-react';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
@@ -24,28 +24,17 @@ export function TableSettings({
 }: TableSettingsProps) {
   const { t } = useTranslation();
 
-  const getButtonSizeClass = (size: 'sm' | 'default' | 'lg') => {
-    switch (size) {
-      case 'sm':
-        return 'h-8 px-3';
-      case 'lg':
-        return 'h-11 px-5';
-      default:
-        return '';
-    }
-  };
-
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          size={size === 'sm' ? 'sm' : 'default'}
-          leftIcon={<Settings className="h-4 w-4" />}
-          hideIcon={false}
-          className={`${getButtonSizeClass(size)} ${className || ''}`}
+          size={size === 'sm' ? 'icon-sm' : 'icon'}
+          className={className}
           aria-label={t('common.table.settings', 'Open table settings')}
-        />
+        >
+          <IconSettings className="h-4 w-4" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-80">
         <div className="grid gap-4">
@@ -65,7 +54,7 @@ export function TableSettings({
                 onClick={resetColumnSizing}
                 className="justify-start"
               >
-                <Undo2 className="mr-2 h-4 w-4" />
+                <IconArrowBack className="mr-2 h-4 w-4" />
                 {t('common.table.resetColumnSizes', 'Reset Column Sizes')}
               </Button>
             )}
@@ -76,7 +65,7 @@ export function TableSettings({
                 onClick={resetColumnOrder}
                 className="justify-start"
               >
-                <Undo2 className="mr-2 h-4 w-4" />
+                <IconArrowBack className="mr-2 h-4 w-4" />
                 {t('common.table.resetColumnOrder', 'Reset Column Order')}
               </Button>
             )}

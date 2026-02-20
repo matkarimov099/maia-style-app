@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
-import { useCurrentPath } from '@/hooks/use-current-path.ts';
+import { useCurrentPath } from '@/hooks/use-current-path';
 
 // Simple deep equality check for objects and arrays
 function isDeepStrictEqual(a: unknown, b: unknown): boolean {

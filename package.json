@@ -9,9 +9,8 @@
     "preview": "vite preview",
     "lint": "biome lint ./src",
     "lint:fix": "biome lint --fix ./src",
-    "format": "biome format --write ./src",
-    "check": "biome check ./src",
-    "check:fix": "biome check --fix ./src"
+    "format": "biome check --write --unsafe .",
+    "fix": "biome format --write src/ && biome lint --write --unsafe src/ && biome check --write --unsafe src/"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -35,7 +34,9 @@
     "axios": "^1.13.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "exceljs": "^4.4.0",
     "i18next": "^25.8.11",
     "jwt-decode": "^4.0.0",
     "motion": "^12.34.2",
