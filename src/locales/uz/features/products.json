@@ -2,6 +2,17 @@
   "products": {
     "title": "Mahsulotlar",
     "subtitle": "Mahsulotlar ro'yxati",
+    "table": {
+      "columns": {
+        "index": "#",
+        "name": "Nomi",
+        "price": "Narxi",
+        "category": "Kategoriya",
+        "status": "Holat",
+        "createdAt": "Yaratilgan sana",
+        "actions": "Amallar"
+      }
+    },
     "fields": {
       "name": {
         "label": "Nomi",
@@ -28,7 +39,10 @@
       },
       "status": {
         "label": "Holat",
-        "placeholder": "Holatni tanlang"
+        "placeholder": "Holatni tanlang",
+        "validation": {
+          "required": "Holat majburiy"
+        }
       },
       "image": {
         "label": "Rasm",
@@ -40,6 +54,18 @@
       "edit": "Mahsulotni tahrirlash",
       "delete": "Mahsulotni o'chirish",
       "view": "Mahsulotni ko'rish"
+    },
+    "create": {
+      "title": "Yangi mahsulot",
+      "description": "Yangi mahsulot yaratish uchun quyidagi ma'lumotlarni kiriting."
+    },
+    "edit": {
+      "title": "Mahsulotni tahrirlash",
+      "description": "Mahsulot ma'lumotlarini o'zgartiring."
+    },
+    "delete": {
+      "title": "Mahsulotni o'chirish",
+      "description": "{{name}} mahsulotini o'chirishni xohlaysizmi? Bu amalni ortga qaytarib bo'lmaydi."
     },
     "success": {
       "created": "Mahsulot muvaffaqiyatli yaratildi",

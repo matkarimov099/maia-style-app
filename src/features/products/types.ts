@@ -16,6 +16,9 @@ export interface ProductFilter extends PaginationFilter {
   name?: string;
   category?: ProductCategory;
   status?: ProductStatus;
+  search?: string;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
 }
 
 export interface CreateProductDto {
